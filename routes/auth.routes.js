@@ -14,9 +14,10 @@ router.post("/signup", (req, res, next) => {
   const { email, password } = req.body;
 
   if (email === "" || password === "") {
-    res
-      .status(400)
-      .json({ message: "Provide email and password" });
+    res.status(400).json({
+      message:
+        "Please provide an email address and password",
+    });
     return;
   }
 
@@ -24,7 +25,9 @@ router.post("/signup", (req, res, next) => {
   if (!emailRegex.test(email)) {
     res
       .status(400)
-      .json({ message: "Provide a valid email address." });
+      .json({
+        message: "Please provide a valid email address.",
+      });
     return;
   }
 
@@ -86,9 +89,10 @@ router.post("/login", (req, res, next) => {
 
   // Check if email or password are provided as empty string
   if (email === "" || password === "") {
-    res
-      .status(400)
-      .json({ message: "Provide email and password." });
+    res.status(400).json({
+      message:
+        "Please provide an email address and password.",
+    });
     return;
   }
 
