@@ -1,28 +1,21 @@
-// ℹ️ Gets access to environment variables/settings
-// https://www.npmjs.com/package/dotenv
 require("dotenv").config();
-
-// ℹ️ Connects to the database
 require("./db");
-
-// Handles http requests (express is node js framework)
-// https://www.npmjs.com/package/express
 const express = require("express");
-
 const app = express();
-
-// ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
+const {
+  isAuthenticated,
+} = require("./middleware/jwt.middleware");
 require("./config")(app);
 
-// 👇 Start handling routes here
-const allRoutes = require("./routes");
+// Route handling
+const allRoutes = require("./routes/index.routes");
 app.use("/api", allRoutes);
 
 const poaRouter = require("./routes/poa.routes");
-app.use("/api", poaRouter);
+app.use("/api", isAuthenticated, poaRouter);
 
 const willRouter = require("./routes/will.routes");
-app.use("/api", willRouter);
+app.use("/api", isAuthenticated, willRouter);
 
 const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
