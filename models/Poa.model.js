@@ -1,36 +1,18 @@
 const { Schema, model, SchemaTypes } = require("mongoose");
 
-const powerOfAttorneySchema = new Schema(
+const documentSchema = new Schema(
   //set trim true for all items
   {
     user: {
       type: SchemaTypes.ObjectId,
       ref: "User",
     },
-    userName: {
+    questions: Array,
+    answers: Array,
+    documentType: {
       type: String,
-      required: true,
-      unique: true,
-      trim: true,
+      enum: ["Will", "Power of Attorney"],
     },
-    userAddress: {
-      type: String,
-      required: true,
-    },
-
-    formInfo: [
-      {
-        poa_answer_id: {
-          type: String,
-        },
-        name: {
-          type: String,
-        },
-        value: {
-          type: String,
-        },
-      },
-    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -38,9 +20,6 @@ const powerOfAttorneySchema = new Schema(
   }
 );
 
-const powerOfAttorney = model(
-  "PowerOfAttorney",
-  powerOfAttorneySchema
-);
+const document = model("Document", documentSchema);
 
-module.exports = powerOfAttorney;
+module.exports = documentSchema;

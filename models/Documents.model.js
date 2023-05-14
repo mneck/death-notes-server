@@ -12,4 +12,4 @@ const documentsSchema = new Schema({
   ],
 });
 
-module.exports = model("Documents", projectSchema);
+module.exports = model("Documents", documentsSchema);
