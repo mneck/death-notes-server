@@ -1,14 +1,16 @@
-const { Schema, model, SchemaTypes } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 const documentSchema = new Schema(
-  //set trim true for all items
   {
-    user: {
-      type: SchemaTypes.ObjectId,
-      ref: "User",
-    },
     title: String,
-    answers: Array,
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    answers: [
+      {
+        cueId: String,
+        answer: String,
+      },
+    ],
     documentType: {
       type: String,
       enum: ["Will", "Power of Attorney"],
@@ -20,6 +22,4 @@ const documentSchema = new Schema(
   }
 );
 
-const document = model("Document", documentSchema);
-
-module.exports = documentSchema;
+module.exports = model("Document", documentSchema);
