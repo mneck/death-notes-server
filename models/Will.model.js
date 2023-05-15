@@ -1,38 +1,40 @@
-const { Schema, model } = require("mongoose");
+// Deprecated
 
-const willFormData = new Schema({
-  name: {
-    type: String,
-  },
-  value: {
-    type: String,
-  },
-});
+// const { Schema, model } = require("mongoose");
 
-const willSchema = new Schema(
-  //set trim true for all items
-  {
-    // user info
-    userName: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    userAddress: {
-      type: String,
-      required: true,
-    },
+// const willFormData = new Schema({
+//   name: {
+//     type: String,
+//   },
+//   value: {
+//     type: String,
+//   },
+// });
 
-    formInfo: [willFormData],
-    // see Mongoose models: Array
-  },
-  {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
-    timestamps: true,
-  }
-);
+// const willSchema = new Schema(
+//   //set trim true for all items
+//   {
+//     // user info
+//     userName: {
+//       type: String,
+//       required: true,
+//       unique: true,
+//       trim: true,
+//     },
+//     userAddress: {
+//       type: String,
+//       required: true,
+//     },
 
-const will = model("Will", willSchema);
+//     formInfo: [willFormData],
+//     // see Mongoose models: Array
+//   },
+//   {
+//     // this second object adds extra properties: `createdAt` and `updatedAt`
+//     timestamps: true,
+//   }
+// );
 
-module.exports = will;
+// const will = model("Will", willSchema);
+
+// module.exports = will;

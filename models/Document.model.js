@@ -7,7 +7,7 @@ const documentSchema = new Schema(
       type: SchemaTypes.ObjectId,
       ref: "User",
     },
-    questions: Array,
+    title: String,
     answers: Array,
     documentType: {
       type: String,
