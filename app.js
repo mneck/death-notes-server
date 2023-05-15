@@ -13,12 +13,6 @@ const {
 const allRoutes = require("./routes/index.routes");
 app.use("/api", allRoutes);
 
-const poaRouter = require("./routes/poa.routes");
-app.use("/api", isAuthenticated, poaRouter);
-
-const willRouter = require("./routes/will.routes");
-app.use("/api", isAuthenticated, willRouter);
-
 const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
 
