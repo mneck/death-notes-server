@@ -3,8 +3,10 @@ const { Schema, model } = mongoose;
 
 const documentSchema = new Schema(
   {
-    title: String,
-    owner: { type: Schema.Types.ObjectId, ref: "User" },
+    title: {
+      type: String,
+      unique: true,
+    },
     answers: [
       {
         cueId: String,

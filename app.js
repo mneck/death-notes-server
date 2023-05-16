@@ -11,7 +11,7 @@ const {
 
 // Route handling
 const allRoutes = require("./routes/index.routes");
-app.use("/api", allRoutes);
+app.use("/", allRoutes);
 
 const authRouter = require("./routes/auth.routes");
 app.use("/auth", authRouter);
