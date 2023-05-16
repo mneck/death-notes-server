@@ -5,8 +5,8 @@ const documentSchema = new Schema(
   {
     title: {
       type: String,
-      unique: true,
     },
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
     answers: [
       {
         cueId: String,
@@ -15,7 +15,7 @@ const documentSchema = new Schema(
     ],
     documentType: {
       type: String,
-      enum: ["Will", "Power of Attorney"],
+      enum: ["will", "poa"],
     },
   },
   {
