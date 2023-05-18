@@ -28,6 +28,23 @@ router.get("/documents/:documentId", (req, res, next) => {
   // const { title, owner, answers, documentType } = req.body;
 });
 
+router.put("/documents/:documentId", (req, res, next) => {
+  const { documentId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(documentId)) {
+    res
+      .status(400)
+      .json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  Document.findByIdAndUpdate(documentId, req.body, {
+    new: true,
+  })
+    .then((updatedProject) => res.json(updatedDocument))
+    .catch((err) => res.json(err));
+});
+
 // DELETE /api/document/:id   - Deletes specified document
 router.delete(
   "/documents/:documentId",
