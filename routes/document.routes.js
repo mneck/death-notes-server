@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-
+const {
+  isAuthenticated,
+} = require("../middleware/jwt.middleware");
 const Document = require("../models/Document.model");
 
 // POST /api/document   - Creates a new document
@@ -12,10 +14,14 @@ router.post("/submitAnswers", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-// GET /api/documents   - Retrieves all of the documents
-router.get("/documents", (req, res, next) => {
-  Document.find()
-    .then((allDocuments) => res.json(allDocuments))
+// GET /api/documents   - Retrieves all of the documents for one user
+router.get("/doc", isAuthenticated, (req, res, next) => {
+  const userToken = req.payload._id;
+  // const { userId } = req.params;
+  Document.find({ owner: userToken })
+    .then((allDocuments) => {
+      res.json(allDocuments);
+    })
     .catch((err) => res.json(err));
 });
 
